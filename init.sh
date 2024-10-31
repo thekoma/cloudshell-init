@@ -59,8 +59,8 @@ EOF
 utils() {
   TMPDIR=$(mktemp -d)
   cd $TMPDIR
-  apt -qq update
-  apt -qq install fzf zsh bzt
+  sudo apt -qq update
+  sudo apt -qq install fzf zsh bzt
   complete -o default -F __start_kubectl k
   curl -fsSLO https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-linux_amd64.tar.gz
   tar zxvf "krew-linux_amd64.tar.gz"
@@ -79,4 +79,4 @@ utils
 bashrc
 zshrc
 echo -e "Done.\nNow load bash again with 'source ~/.bashrc' or switch to zsh running 'zsh'."
-echo -e "To install terraform  or other tools use mise.\nI.E. \nmize plugin install terraform\nmize install terraform\nmise use --global terraform@latest"
+echo -e "To install terraform  or other tools use mise.\nI.E. \nmise plugin install terraform\nmise install terraform\nmise use --global terraform@latest"
