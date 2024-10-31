@@ -66,7 +66,7 @@ utils() {
   tar zxvf "krew-linux_amd64.tar.gz"
   ./krew-linux_amd64 install krew ns ctx tail
   curl https://mise.run | sh
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
   cd
   rm -fr $TMPDIR
