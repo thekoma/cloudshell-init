@@ -70,6 +70,10 @@ utils() {
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
   cd
   rm -fr $TMPDIR
+  eval "$(mise activate zsh)"
+  mise plugin install terraform
+  mise install terraform
+  mise use --global terraform@latest
 }
 
 
