@@ -12,12 +12,11 @@ EOF
 }
 
 zshrc() {
-  cat << EOF > ~/.zshrc
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+cat << EOF > ~/.zshrc
+if [[ -r "\${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-\${(%):-%n}.zsh" ]]; then
+  source "\${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-\${(%):-%n}.zsh"
 fi
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
   git
@@ -25,7 +24,6 @@ plugins=(
   debian
   vim
   golang
-  iterm2
   gcloud
   sudo
   vscode
@@ -49,11 +47,11 @@ zstyle :omz:plugins:ssh-agent quiet yes
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 source $ZSH/oh-my-zsh.sh
 
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source \$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source <(fzf --zsh)
-eval "$(~/.local/bin/mise activate zsh)"'
+eval "\$(~/.local/bin/mise activate zsh)"'
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-eval "$(mise activate zsh)"
+eval "\$(mise activate zsh)"
 EOF
 }
 
@@ -61,7 +59,7 @@ utils() {
   TMPDIR=$(mktemp -d)
   cd $TMPDIR
   sudo apt -qq update
-  sudo apt -qq install fzf zsh bzt
+  sudo apt -qq install fzf zsh
   complete -o default -F __start_kubectl k
   curl -qfsSLO https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-linux_amd64.tar.gz
   tar zxvf "krew-linux_amd64.tar.gz"
