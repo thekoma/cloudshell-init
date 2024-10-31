@@ -3,6 +3,7 @@
 bashrc() {
   cat /etc/bash.bashrc > ~/.bashrc
   cat << EOF >> ~/.bashrc
+eval "$(~/.local/bin/mise activate bash)"'
 export PATH="$HOME/.krew/bin:$PATH"
 source <(kubectl completion bash)
 alias k=kubectl
@@ -50,7 +51,7 @@ source $ZSH/oh-my-zsh.sh
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source <(fzf --zsh)
-
+eval "$(~/.local/bin/mise activate bash)"'
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 eval "$(mise activate zsh)"
 EOF
@@ -62,11 +63,11 @@ utils() {
   sudo apt -qq update
   sudo apt -qq install fzf zsh bzt
   complete -o default -F __start_kubectl k
-  curl -fsSLO https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-linux_amd64.tar.gz
+  curl -qfsSLO https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-linux_amd64.tar.gz
   tar zxvf "krew-linux_amd64.tar.gz"
   ./krew-linux_amd64 install krew ns ctx tail
   curl https://mise.run | sh
-  echo 'eval "$(~/.local/bin/mise activate bash)"' >> ~/.bashrc
+  echo ' >> ~/.bashrc
   echo 'eval "$(~/.local/bin/mise activate zsh)"' >> ~/.zshrc
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
