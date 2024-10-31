@@ -58,8 +58,9 @@ EOF
 utils() {
   TMPDIR=$(mktemp -d)
   cd $TMPDIR
+  DEBIAN_FRONTEND=noninteractive
   sudo apt -qq update
-  sudo apt -qq install fzf zsh
+  sudo apt -qq install -y fzf zsh
   complete -o default -F __start_kubectl k
   curl -qfsSLO https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-linux_amd64.tar.gz
   tar zxvf "krew-linux_amd64.tar.gz"
